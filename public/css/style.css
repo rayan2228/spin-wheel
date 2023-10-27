@@ -1,0 +1,340 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+body {
+    height: 100vh;
+    overflow: hidden;
+    background-color: #272727;
+
+}
+
+.success {
+    color: #0CD977;
+    font-size: 18px;
+    text-align: left;
+    margin: 10px 0px;
+}
+
+.flex {
+    display: flex;
+    position: relative;
+    height: 100vh;
+    justify-content: flex-end;
+
+
+}
+
+
+.spin {
+    width: 42%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wheel {
+
+    border-radius: 50%;
+    overflow: hidden;
+    height: 500px;
+    width: 500px;
+    position: relative;
+    border: 14px solid #fff;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.35);
+    transition: all 500ms ease-in-out;
+
+}
+
+.wheel.spin {
+
+    -webkit-animation: spin 5s ease-in-out infinite;
+
+}
+
+.section {
+
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    opacity: 1;
+    left: 0px;
+    right: 0;
+    top: -5px;
+    margin: 0 auto;
+
+}
+
+.inner-wheel {
+
+    height: 500px;
+    width: 500px;
+    border-radius: 50%;
+    z-index: -1;
+
+}
+
+.button-wrap {
+    position: absolute;
+    height: 105px;
+    width: 105px;
+    background: #ededed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    box-shadow: 0px 0px 18px rgba(0, 0, 0, 0.8);
+    cursor: pointer;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.button {
+
+    border-radius: 50%;
+    height: 90px;
+    width: 90px;
+    background: darken(#ededed, 6%);
+    position: absolute;
+    display: block;
+    z-index: 2;
+
+}
+
+
+
+/* .button-wrap:after {
+
+    content: '';
+    position: absolute;
+    top: -18px;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+    height: 0px;
+    width: 0px;
+    border-style: solid;
+    border-width: 0 10px 20px;
+    border-color: #ededed transparent;
+
+} */
+
+.button-wrap:before {
+
+    content: '';
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    top: 16px;
+    left: 7px;
+    background: rgba(0, 0, 0, 0.1);
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+
+}
+
+.button h4 {
+
+    text-align: center;
+    margin-top: 28px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 28px;
+    color: rgba(0, 0, 0, 0.1);
+    letter-spacing: 1px;
+    text-shadow: 0px 3px 6px #def, 0 0 0 rgba(0, 0, 0, 0.3), 5px 8px 50px #def, 0px 1px 0px rgba(0, 0, 0, 0.5);
+    //text-shadow:0px 0px 10px rgba(0,0,0,0.4), 0px 0px 1px #000;
+
+}
+
+.center-line {
+
+    height: 5px;
+    width: 1px;
+    z-index: 99;
+    margin-top: 26%;
+
+}
+
+.tick {
+
+    -webkit-animation: tick 500ms ease-in-out infinite;
+
+}
+
+@-webkit-keyframes tick {
+
+    0% {
+        transform: rotate(10deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+
+}
+
+.section span {
+    position: absolute;
+    bottom: 213px;
+    left: -10px;
+    color: white;
+    font-size: 16px;
+    rotate: -90deg;
+}
+
+/* ========================================================================= */
+
+:root {
+    --border-color: #D7DBE3;
+    font-family: -apple-system, BlinkMacSystemFont, "Roboto", "Open Sans", "Helvetica Neue", sans-serif;
+    --green: #0CD977;
+    --red: #FF1C1C;
+    --pink: #FF93DE;
+    --purple: #5767ED;
+    --yellow: #FFC61C;
+    --rotation: 0deg;
+}
+
+.wrapper {
+    position: absolute;
+    z-index: 99;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    transform: scale(0);
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    transition: .4s;
+    -webkit-transition: .4s;
+    -moz-transition: .4s;
+    -ms-transition: .4s;
+    -o-transition: .4s;
+}
+
+.modal {
+    width: 300px;
+    margin: 0 auto;
+    border: 1px solid var(--border-color);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.16);
+    background-color: #fff;
+    border-radius: 0.25rem;
+    padding: 2rem;
+    z-index: 1;
+}
+
+.emoji {
+    display: block;
+    text-align: center;
+    font-size: 5rem;
+    line-height: 5rem;
+    transform: scale(0.5);
+    animation: scaleCup 2s infinite alternate;
+}
+
+@keyframes scaleCup {
+    0% {
+        transform: scale(0.6);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+h1 {
+    text-align: center;
+    font-size: 1em;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.modal-btn {
+    display: block;
+    margin: 0 -2rem -2rem -2rem;
+    padding: 1rem 2rem;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    text-align: center;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 0 0 0.25rem 0.25rem;
+    background-color: var(--green);
+    text-decoration: none;
+}
+
+@keyframes confettiRain {
+    0% {
+        opacity: 1;
+        margin-top: -100vh;
+        margin-left: -200px;
+    }
+
+    100% {
+        opacity: 1;
+        margin-top: 100vh;
+        margin-left: 200px;
+    }
+}
+
+.confetti {
+    opacity: 0;
+    position: absolute;
+    width: 1rem;
+    height: 1.5rem;
+    transition: 500ms ease;
+    animation: confettiRain 5s infinite;
+}
+
+#confetti-wrapper {
+    overflow: hidden !important;
+}
+
+.input {
+    padding: 20px;
+    align-self: center;
+    font-family: monospace;
+}
+
+textarea {
+    height: 80vh;
+    width: 500px;
+    resize: none;
+    background-color: transparent;
+    color: whitesmoke;
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.submit {
+    display: block;
+    background-color: #D7DBE3;
+    width: 100%;
+    padding: 10px 0px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.filter {
+    padding: 5px;
+    cursor: pointer;
+}
+
+.filter i {
+    margin-right: 5px;
+}
