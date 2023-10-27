@@ -10,13 +10,16 @@
 
             <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
 
-                <form class="p-6 " action="{{ route('Participants.store') }}" method="POST">
+                <form class="p-6 " action="{{ route('participants.update', ['participant' => $participant->id]) }}"
+                    method="POST">
                     @csrf
+                    @method('PUT')
                     <div class="mb-4">
                         <label for="name" class="block mb-4 text-sm font-medium ">Name Or
                             Number</label>
                         <input type="text" id="name" name="name_or_num"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 ">
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 "
+                            value="{{ $participant->name_or_num }}">
                         @error('name_or_num')
                             <small class="mt-2 text-base text-red-400">
                                 {{ $message }}

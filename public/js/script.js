@@ -1,3 +1,5 @@
+new DataTable("#example");
+
 wheel = $(".wheel");
 section = $(".section");
 wrapper = $(".wrapper");

@@ -41,34 +41,12 @@ class ParticipantsController extends Controller
             }
         }
         return back()->withSuccess('names or numbers added successfully');
-        // $request->validate([
-        //     "*" => "required"
-        // ]);
-        // if ($request->position != "normal") {
-        //     if (Participants::where('position', $request->position)->exists()) {
-        //         return back()->withErrors(['checkError' => 'position already exists']);
-        //     } else {
-        //         Participants::insert([
-        //             "name_or_num" => $request->name_or_num,
-        //             "position" => $request->position,
-        //             "created_at" => now()
-        //         ]);
-        //     }
-        // } else {
-        //     Participants::insert([
-        //         "name_or_num" => $request->name_or_num,
-        //         "position" => $request->position,
-        //         "created_at" => now()
-        //     ]);
-        // }
-
-        // return back();
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Participants $participants)
+    public function show(Participants $participant)
     {
         //
     }
@@ -76,25 +54,43 @@ class ParticipantsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Participants $participants)
+    public function edit(Participants $participant)
     {
 
-        return Participants::find($participants);
-        // return view("participants_edit")
+        return view("participants_edit", compact("participant"));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Participants $participants)
+    public function update(Request $request, Participants $participant)
     {
-        //
+        $request->validate([
+            "*" => "required"
+        ]);
+        if ($request->position != "normal") {
+            if (Participants::where('position', $request->position)->exists()) {
+                return back()->withErrors('position already exists');
+            } else {
+                $participant->update([
+                    "name_or_num" => $request->name_or_num,
+                    "position" => $request->position,
+                ]);
+                return redirect(route("dashboard"))->withSuccess('position updated successfully');
+            }
+        } else {
+            $participant->update([
+                "name_or_num" => $request->name_or_num,
+                "position" => $request->position,
+            ]);
+            return redirect(route("dashboard"))->withSuccess('position updated successfully');
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Participants $participants)
+    public function destroy(Participants $participant)
     {
         //
     }

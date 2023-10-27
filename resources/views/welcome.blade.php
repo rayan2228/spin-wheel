@@ -61,7 +61,7 @@
                 @if (session('success'))
                     <h1 class="success">{{ session('success') }}</h1>
                 @endif
-                <form action="{{ route('Participants.store') }}" method="POST">
+                <form action="{{ route('participants.store') }}" method="POST">
                     @csrf
                     <textarea name="name_or_num" id=""></textarea>
                     <button class="submit">Submit</button>

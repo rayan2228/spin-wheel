@@ -15,8 +15,12 @@
 
 
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                        <table class="w-full text-sm text-left text-gray-500 ">
-                            <thead class="text-xs text-gray-700 uppercase bg-gray-200">
+                        @if (session('success'))
+                            <h1 class="text-lg text-green-600">{{ session('success') }}</h1>
+                        @endif
+
+                        <table class="text-left" id="example">
+                            <thead>
                                 <tr>
                                     <th scope="col" class="px-6 py-3">
                                         participant name or number
@@ -38,7 +42,7 @@
                             <tbody>
                                 @forelse ($participants->chunk(5) as $participants_chunk)
                                     @foreach ($participants_chunk as $participant)
-                                        <tr class="bg-white border-b ">
+                                        <tr>
                                             <th scope="row"
                                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
                                                 {{ $participant->name_or_num }}
@@ -53,8 +57,9 @@
                                                 {{ $participant->created_at }}
                                             </td>
                                             <td class="px-6 py-4 ">
-                                                <a href="{{ route('Participants.edit', ['Participant', $participant->id]) }}"
-                                                    class="font-medium text-blue-600 hover:underline">Edit</a>
+                                                <a href="{{ route('participants.edit', ['participant' => $participant->id]) }}"
+                                                    class="font-medium text-blue-600 hover:underline"
+                                                    name="id">Edit</a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -64,6 +69,7 @@
 
 
                             </tbody>
+
                         </table>
                     </div>
 
