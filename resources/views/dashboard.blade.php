@@ -23,6 +23,9 @@
                             <thead>
                                 <tr>
                                     <th scope="col" class="px-6 py-3">
+                                        no
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
                                         participant name or number
                                     </th>
                                     <th scope="col" class="px-6 py-3">
@@ -40,34 +43,33 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($participants->chunk(5) as $participants_chunk)
-                                    @foreach ($participants_chunk as $participant)
-                                        <tr>
-                                            <th scope="row"
-                                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                                                {{ $participant->name_or_num }}
-                                            </th>
-                                            <td class="px-6 py-4">
-                                                {{ $participant->position }}
-                                            </td>
-                                            <td class="px-6 py-4">
-                                                {{ $participant->result }}
-                                            </td>
-                                            <td class="px-6 py-4">
-                                                {{ $participant->created_at }}
-                                            </td>
-                                            <td class="px-6 py-4 ">
-                                                <a href="{{ route('participants.edit', ['participant' => $participant->id]) }}"
-                                                    class="font-medium text-blue-600 hover:underline"
-                                                    name="id">Edit</a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                @empty
-                                @endforelse
 
-
-
+                                @foreach ($participants as $participant)
+                                    <tr>
+                                        <td scope="row"
+                                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                                            {{ $loop->iteration }}
+                                        </td>
+                                        <td scope="row"
+                                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                                            {{ $participant->name_or_num }}
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            {{ $participant->position }}
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            {{ $participant->result }}
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            {{ $participant->created_at }}
+                                        </td>
+                                        <td class="px-6 py-4 ">
+                                            <a href="{{ route('participants.edit', ['participant' => $participant->id]) }}"
+                                                class="font-medium text-blue-600 hover:underline"
+                                                name="id">Edit</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
 
                         </table>

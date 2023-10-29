@@ -12,8 +12,9 @@ class ParticipantsController extends Controller
      */
     public function get_participants()
     {
-        $participants = Participants::where("result", 0)->limit(1000)->get();
-        return view("welcome", compact("participants"));
+        $participants = Participants::limit(10)->get();
+        $participantsCount = Participants::count();
+        return view("welcome", compact("participants", "participantsCount"));
     }
 
     /**
@@ -87,11 +88,24 @@ class ParticipantsController extends Controller
         }
     }
 
+    public function participants_result(Request $request)
+    {
+        Participants::find($request->id)->update([
+            "result" => 1,
+        ]);
+        return back();
+    }
+    public function participants_remove(Request $request)
+    {
+        Participants::find($request->id)->delete();
+        return back();
+    }
+
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Participants $participant)
     {
-        //
+        return $participant;
     }
 }

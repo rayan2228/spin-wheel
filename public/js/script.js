@@ -1,5 +1,3 @@
-new DataTable("#example");
-
 wheel = $(".wheel");
 section = $(".section");
 wrapper = $(".wrapper");
@@ -34,10 +32,10 @@ currRot = sectionAngle;
 $(".button-wrap").click(function () {
     var count = 0;
 
-    var rng = Math.floor(Math.random() * (1000 - 500 + 1) + 500);
-    setTimeout(function () {
-        $(".button-wrap").addClass("tick");
-    }, 425);
+    var rng = Math.floor(Math.random() * (1000 - 800 + 1) + 800);
+    // setTimeout(function () {
+    //     $(".button-wrap").addClass("tick");
+    // }, 425);
 
     var interval = setInterval(function () {
         currRot = currRot + sectionAngle / 2;
@@ -49,78 +47,105 @@ $(".button-wrap").click(function () {
         if (count == rng) {
             clearInterval(interval);
             setTimeout(function () {
-                $(".button-wrap").removeClass("tick");
-                $.each(section, function (index, value) {
-                    if (
-                        $(value).data().win == "first" ||
-                        $(value).data().win == "second" ||
-                        $(value).data().win == "third"
-                    ) {
-                        wrapper.css({ transform: "scale(1)" });
-                        winName.text(`Congratulation, ${$(value).text()}`);
-                        for (i = 0; i < 100; i++) {
-                            // Random rotation
-                            var randomRotation = Math.floor(
-                                Math.random() * currRot
-                            );
-                            // Random Scale
-                            var randomScale = Math.random() * 1;
-                            // Random width & height between 0 and viewport
-                            var randomWidth = Math.floor(
-                                Math.random() *
-                                    Math.max(
-                                        document.documentElement.clientWidth,
-                                        window.innerWidth || 0
-                                    )
-                            );
-                            var randomHeight = Math.floor(
-                                Math.random() *
-                                    Math.max(
-                                        document.documentElement.clientHeight,
-                                        window.innerHeight || 500
-                                    )
-                            );
+                // $(".button-wrap").removeClass("tick");
+                function winner(position) {
+                    let flag = false;
+                    $.each(section, function (index, value) {
+                        if (
+                            $(value).data().win == position &&
+                            $(value).data().result == 0
+                        ) {
+                            flag = true;
+                            wrapper.css({ transform: "scale(1)" });
+                            winName.text(`Congratulation, ${$(value).text()}`);
+                            $("#continueId").val($(value).children()[1].value);
+                            $("#rayan").val($(value).children()[1].value);
+                            // console.log($("#removeId").val(2));
 
-                            // Random animation-delay
-                            var randomAnimationDelay = Math.floor(
-                                Math.random() * 15
-                            );
+                            for (i = 0; i < 100; i++) {
+                                // Random rotation
+                                var randomRotation = Math.floor(
+                                    Math.random() * currRot
+                                );
+                                // Random Scale
+                                var randomScale = Math.random() * 1;
+                                // Random width & height between 0 and viewport
+                                var randomWidth = Math.floor(
+                                    Math.random() *
+                                        Math.max(
+                                            document.documentElement
+                                                .clientWidth,
+                                            window.innerWidth || 0
+                                        )
+                                );
+                                var randomHeight = Math.floor(
+                                    Math.random() *
+                                        Math.max(
+                                            document.documentElement
+                                                .clientHeight,
+                                            window.innerHeight || 500
+                                        )
+                                );
 
-                            // Random colors
-                            var colors = [
-                                "#0CD977",
-                                "#FF1C1C",
-                                "#FF93DE",
-                                "#5767ED",
-                                "#FFC61C",
-                                "#8497B0",
-                            ];
-                            var randomColor =
-                                colors[
-                                    Math.floor(Math.random() * colors.length)
+                                // Random animation-delay
+                                var randomAnimationDelay = Math.floor(
+                                    Math.random() * 15
+                                );
+
+                                // Random colors
+                                var colors = [
+                                    "#0CD977",
+                                    "#FF1C1C",
+                                    "#FF93DE",
+                                    "#5767ED",
+                                    "#FFC61C",
+                                    "#8497B0",
                                 ];
+                                var randomColor =
+                                    colors[
+                                        Math.floor(
+                                            Math.random() * colors.length
+                                        )
+                                    ];
 
-                            // Create confetti piece
-                            var confetti = document.createElement("div");
-                            confetti.className = "confetti";
-                            confetti.style.top = randomHeight + "px";
-                            confetti.style.right = randomWidth + "px";
-                            confetti.style.backgroundColor = randomColor;
-                            // confetti.style.transform='scale(' + randomScale + ')';
-                            confetti.style.obacity = randomScale;
-                            confetti.style.transform =
-                                "skew(15deg) rotate(" + randomRotation + "deg)";
-                            confetti.style.animationDelay =
-                                randomAnimationDelay + "s";
-                            document
-                                .getElementById("confetti-wrapper")
-                                .appendChild(confetti);
+                                // Create confetti piece
+                                var confetti = document.createElement("div");
+                                confetti.className = "confetti";
+                                confetti.style.top = randomHeight + "px";
+                                confetti.style.right = randomWidth + "px";
+                                confetti.style.backgroundColor = randomColor;
+                                // confetti.style.transform='scale(' + randomScale + ')';
+                                confetti.style.obacity = randomScale;
+                                confetti.style.transform =
+                                    "skew(15deg) rotate(" +
+                                    randomRotation +
+                                    "deg)";
+                                confetti.style.animationDelay =
+                                    randomAnimationDelay + "s";
+                                document
+                                    .getElementById("confetti-wrapper")
+                                    .appendChild(confetti);
+                            }
+
+                            // setTimeout(function () {
+                            //     // $("#rayan").submit();
+                            //     wrapper.css({ transform: "scale(0)" });
+                            // }, 5000);
+                            return false;
                         }
-                        setTimeout(function () {
-                            wrapper.css({ transform: "scale(0)" });
-                        }, 5000);
+                    });
+                    return flag;
+                }
+                let result = winner("first");
+                if (!result) {
+                    result = winner("second");
+                    if (!result) {
+                        result = winner("third");
                     }
-                });
+                    if (!result) {
+                        result = winner("normal");
+                    }
+                }
             }, 15);
         }
     }, 15);

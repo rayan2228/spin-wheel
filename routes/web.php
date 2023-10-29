@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [ParticipantsController::class, 'get_participants']);
+Route::post('/', [ParticipantsController::class, 'participants_result']);
+Route::post('/remove', [ParticipantsController::class, 'participants_remove']);
 
 Route::get('/dashboard', [ParticipantsController::class, 'participants_list'])->middleware(['auth', 'verified'])->name('dashboard');
 
