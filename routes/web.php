@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ParticipantsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SettingsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +27,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource("participants", ParticipantsController::class);
+    Route::post('settings', [SettingsController::class, "update"])->name("settings");
+    Route::post('settingslimit', [SettingsController::class, "updatelimit"])->name("settingslimit");
 });
 
 

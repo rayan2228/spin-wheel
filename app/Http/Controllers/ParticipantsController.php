@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Participants;
+use App\Models\Settings;
 use Illuminate\Http\Request;
 
 class ParticipantsController extends Controller
@@ -12,10 +13,12 @@ class ParticipantsController extends Controller
      */
     public function get_participants()
     {
-        $participants = Participants::where("onSpin", 1)->limit(100)->get();
+        $limit = Settings::where("setting_name", "limit")->first();
+        $participants = Participants::where("onSpin", 1)->limit($limit->setting_value)->get();
         $winners = Participants::where("result", 1)->get();
         $participantsCount = Participants::count();
-        return view("welcome", compact("participants", "participantsCount", "winners"));
+        $spin = Settings::where("setting_name", "spin")->first();
+        return view("welcome", compact("participants", "participantsCount", "winners", "spin"));
     }
 
     /**
@@ -24,7 +27,9 @@ class ParticipantsController extends Controller
     public function participants_list()
     {
         $participants = Participants::all();
-        return view("dashboard", compact("participants"));
+        $spin = Settings::where("setting_name", "spin")->first();
+        $limit = Settings::where("setting_name", "limit")->first();
+        return view("dashboard", compact("participants", "spin", "limit"));
     }
 
     /**

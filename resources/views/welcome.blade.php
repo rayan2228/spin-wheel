@@ -36,7 +36,9 @@
 
                 </div>
                 <div class="button-wrap">
-                    <span></span>
+                    @if ($spin->setting_value)
+                        <span></span>
+                    @endif
                     <div class="button">
                         <h4>SPIN</h4>
                     </div>
