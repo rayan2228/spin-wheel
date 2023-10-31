@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string("name_or_num");
             $table->string("position")->default("normal");
+            $table->boolean("onSpin")->default(true);
             $table->boolean("result")->default(false);
             $table->timestamps();
         });

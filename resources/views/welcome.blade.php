@@ -36,6 +36,7 @@
 
                 </div>
                 <div class="button-wrap">
+                    <span></span>
                     <div class="button">
                         <h4>SPIN</h4>
                     </div>
@@ -72,19 +73,32 @@
                 <button class="filter" id="shuffle"> <i class="fa-solid fa-shuffle"></i>shuffle</button>
                 <button class="filter" id="sort"><i class="fa-solid fa-arrow-down-a-z"></i>sort</button>
                 <button class="filter" id="numbersort"><i class="fa-solid fa-arrow-down-a-z"></i>number sort</button>
+                <button class="filter" id="result"><i class="fa-solid fa-square-poll-vertical"></i>result</button>
+                <button class="filter" id="add"><i class="fa-solid fa-plus"></i>add</button>
                 <button class="count">{{ $participantsCount }}</button>
                 @if (session('success'))
                     <h1 class="success">{{ session('success') }}</h1>
                 @endif
-                <form action="{{ route('participants.store') }}" method="POST">
-                    @csrf
-                    <textarea name="name_or_num" id="">
+                <div class="addData">
+                    <form action="{{ route('participants.store') }}" method="POST">
+                        @csrf
+                        <textarea name="name_or_num" id="">
 @foreach ($participants as $participant)
 {{ $participant->name_or_num }}
 @endforeach
                     </textarea>
-                    <button class="submit">Submit</button>
-                </form>
+                        <button class="submit">Submit</button>
+                    </form>
+                </div>
+
+                <div class="results">
+                    <ul>
+                        @foreach ($winners as $winner)
+                            <li style="color: #0CD977">{{ $winner->name_or_num }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+
             </div>
         </div>
     </div>

@@ -156,6 +156,10 @@ const shuffleElm = document.querySelector("#shuffle");
 const sortElm = document.querySelector("#sort");
 const numberSortElm = document.querySelector("#numbersort");
 const textareaElm = document.querySelector("textarea");
+const resultElm = document.querySelector("#result");
+const resultsElm = document.querySelector(".results");
+const addElm = document.querySelector("#add");
+const addDataElm = document.querySelector(".addData");
 
 shuffleElm.addEventListener("click", () => {
     let array = textareaElm.value.split("\n");
@@ -192,4 +196,17 @@ numberSortElm.addEventListener("click", () => {
     });
 
     textareaElm.value = array2.join("\n");
+});
+
+resultElm.addEventListener("click", () => {
+    resultElm.style.display = "none";
+    addDataElm.style.display = "none";
+    resultsElm.style.display = "block";
+    addElm.style.display = "inline-block";
+});
+addElm.addEventListener("click", () => {
+    addElm.style.display = "none";
+    resultsElm.style.display = "none";
+    addDataElm.style.display = "block";
+    resultElm.style.display = "inline-block";
 });

@@ -105,9 +105,7 @@ body {
 
 
 
-.button-wrap:after {
-
-    content: '';
+.button-wrap span {
     position: absolute;
     top: -18px;
     right: 0;
@@ -330,6 +328,26 @@ textarea {
     font-size: 18px;
 }
 
+.results {
+    height: 80vh;
+    width: 500px;
+    resize: none;
+    background-color: transparent;
+    color: whitesmoke;
+    margin-top: 10px;
+    font-size: 18px;
+    border: 1px solid white;
+    overflow-y: scroll;
+    display: none;
+}
+
+.results ul {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+
 .submit {
     display: block;
     background-color: #D7DBE3;
@@ -354,4 +372,8 @@ textarea {
 
 .filter i {
     margin-right: 5px;
+}
+
+#add {
+    display: none;
 }

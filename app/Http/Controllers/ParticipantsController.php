@@ -12,9 +12,10 @@ class ParticipantsController extends Controller
      */
     public function get_participants()
     {
-        $participants = Participants::limit(10)->get();
+        $participants = Participants::where("onSpin", 1)->limit(100)->get();
+        $winners = Participants::where("result", 1)->get();
         $participantsCount = Participants::count();
-        return view("welcome", compact("participants", "participantsCount"));
+        return view("welcome", compact("participants", "participantsCount", "winners"));
     }
 
     /**
@@ -97,7 +98,10 @@ class ParticipantsController extends Controller
     }
     public function participants_remove(Request $request)
     {
-        Participants::find($request->id)->delete();
+        Participants::find($request->id)->update([
+            "onSpin" => false,
+            "result" => 1,
+        ]);
         return back();
     }
 
