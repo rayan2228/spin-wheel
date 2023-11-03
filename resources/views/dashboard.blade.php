@@ -19,6 +19,10 @@
                     <input type="text" name="limit">
                     <button class="px-10 py-2 text-white capitalize bg-slate-500">set limit</button>
                 </form>
+                <form action="{{ url('removeAll') }}" method="post">
+                    @csrf
+                    <button class="px-10 py-2 text-white capitalize bg-red-500">Delete All</button>
+                </form>
             </div>
         </div>
     </x-slot>

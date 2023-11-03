@@ -11,7 +11,7 @@ class ParticipantsController extends Controller
 
     function __construct()
     {
-        $this->middleware("auth", ["only" => ["participants.edit", "participants.update", "participants.destroy"]]);
+        $this->middleware("auth", ["only" => ["participants.edit", "participants.update", "participants.destroy", "participants_removeAll"]]);
     }
     /**
      * Display a listing of the resource.
@@ -52,6 +52,10 @@ class ParticipantsController extends Controller
                 ]);
             }
         }
+        $participant_count = Participants::count();
+        Settings::where("setting_name", "limit")->update([
+            "setting_value" => $participant_count
+        ]);
         return back()->withSuccess('names or numbers added successfully');
     }
 
@@ -121,5 +125,10 @@ class ParticipantsController extends Controller
     public function destroy(Participants $participant)
     {
         return $participant;
+    }
+    public function participants_removeAll()
+    {
+        Participants::truncate();
+        return back();
     }
 }
