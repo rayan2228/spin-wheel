@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class ParticipantsController extends Controller
 {
+
+    function __construct()
+    {
+        $this->middleware("auth", ["only" => ["participants.edit", "participants.update", "participants.destroy"]]);
+    }
     /**
      * Display a listing of the resource.
      */
