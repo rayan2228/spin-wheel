@@ -61,8 +61,8 @@ $(".button-wrap").click(function () {
                             flag = true;
                             wrapper.css({ transform: "scale(1)" });
                             winName.text(`Congratulation, ${winner.text()}`);
-                            $("#continueId").val($(value).children()[1].value);
-                            $("#rayan").val($(value).children()[1].value);
+                            $("#continueId").val(winner.children()[1].value);
+                            $("#rayan").val(winner.children()[1].value);
                             // console.log($("#removeId").val(2));
 
                             for (i = 0; i < 100; i++) {
