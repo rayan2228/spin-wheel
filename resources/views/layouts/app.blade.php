@@ -13,7 +13,8 @@
 
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+    <link rel="stylesheet" href="{{ asset('build/assets/app-550d0007.css') }}">
 </head>
 
 <body class="font-sans antialiased">
@@ -36,6 +37,7 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="{{ asset('build/assets/app-037c606c.js') }}"></script>
     <script src="{{ asset('js/data.js') }}"></script>
 </body>
 
