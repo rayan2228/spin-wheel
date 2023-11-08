@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <!-- Scripts -->
     {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
-    <link rel="stylesheet" href="{{ asset('build/assets/app-550d0007.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/assets/app-3e9bbf59.css') }}">
 </head>
 
 <body class="font-sans antialiased">

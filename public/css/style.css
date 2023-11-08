@@ -377,3 +377,20 @@ textarea {
 #add {
     display: none;
 }
+
+
+@media (min-width:320px) and (max-width:992px) {
+    body {
+        height: auto;
+    }
+
+    .flex {
+        display: block;
+        height: auto;
+    }
+
+    .spin {
+        width: 80vw;
+        height: 80vh;
+    }
+}
